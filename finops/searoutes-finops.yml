@@ -1,0 +1,100 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Searoutes
+providerId: searoutes
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Maritime
+- Sea Routing
+- CO2 Emissions
+- Vessel Tracking
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Searoutes spend. Searoutes bills flat annual subscriptions per
+  product bundle (Ocean Routing, Vessel Tracking, Carbon Emissions), each with
+  an included monthly call allotment, plus custom enterprise agreements. There
+  are no integration fees or variable per-call charges advertised; the primary
+  cost driver is choosing the right bundles and monthly call volume, so cost
+  control centers on quota allocation and avoiding redundant calls rather than
+  per-token metering.
+notes: >-
+  Searoutes does not publish per-call overage rates or a usage-export format;
+  the billing model is subscription-first. Confirm invoicing cadence, currency,
+  and any overage terms with Searoutes during reconciliation.
+sources:
+- https://searoutes.com/pricing/
+- https://developer.searoutes.com/reference/introduction
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Searoutes
+serviceCategory: Maritime and Logistics
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Annual
+  billingCurrency: EUR
+  chargeCategories:
+  - Purchase
+  - Usage
+focusColumns:
+  ServiceName: Searoutes API
+  ServiceCategory: Maritime and Logistics
+  ProviderName: Searoutes
+  PublisherName: Searoutes
+  InvoiceIssuerName: Searoutes
+  BillingCurrency: EUR
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: ocean_routing_calls
+  description: Calls to the Ocean Routing and geocoding endpoints, counted against the bundle's monthly allotment.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - api_key
+  - product
+- name: vessel_tracking_calls
+  description: AIS vessel position, ETA, arrivals, trace, and time-series calls counted against the Vessel Tracking allotment.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - api_key
+  - product
+- name: carbon_emissions_calls
+  description: Multimodal CO2e calculation calls counted against the Carbon Emissions allotment.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - api_key
+  - product
+- name: weather_calls
+  description: Historical, real-time, and forecast weather calls.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - api_key
+principles:
+- name: Visibility
+  description: Track monthly call consumption per API key against each bundle's included allotment to avoid surprise overages.
+- name: Allocation
+  description: Issue separate API keys per workload or team and map each to the product bundle and cost center it draws on.
+- name: Optimization
+  description: Cache stable results (port geocodes, static routes), batch shipment CO2e requests, and right-size the subscribed bundles and monthly volume to actual demand.
+- name: Accountability
+  description: Assign an owner per bundle and review annual subscription renewals against realized call volume.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

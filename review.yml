@@ -1,0 +1,120 @@
+aid: searoutes
+name: Searoutes
+review:
+  question: Does Searoutes expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Every Searoutes API surface documented at
+    developer.searoutes.com is request/response REST over HTTPS served from
+    https://api.searoutes.com and authenticated with an x-api-key header. Even
+    the real-time-flavored data (AIS vessel positions, ETAs, current weather) is
+    delivered by polling REST endpoints such as /vessel/v2/position and
+    /weather/v2/, not by a server-push transport. There is no documented
+    WebSocket (ws:// or wss://) or SSE endpoint on Searoutes' API to model.
+findings:
+  summary: |
+    Searoutes does not publish a documented public WebSocket API. Searoutes is a
+    maritime routing and carbon-emissions platform whose public product is a set
+    of REST APIs served from https://api.searoutes.com and authenticated with an
+    x-api-key request header. The documented surfaces are Ocean Routing
+    (/route/v2/sea/...), Geocoding (/geocoding/v2/...), CO2 Emissions
+    (/co2/v2/...), Vessel/AIS (/vessel/v2/...), Search & Carriers
+    (/search/v2/...), and Weather (/weather/v2/...). All are synchronous
+    request/response REST over HTTPS. Near-real-time data (latest vessel
+    position, ETA, current weather) is obtained by calling REST endpoints, not
+    by subscribing to a stream. No WebSocket or SSE endpoint is documented.
+  openSource: |
+    The core Searoutes routing/emissions engine is a commercial hosted API and
+    is not open source. Searoutes maintains a public GitHub organization
+    (github.com/searoutes) with example/client repositories (for example
+    "examples" and "vessel-destination-map") that call the hosted API, but the
+    routing, AIS, and CO2 computation services themselves are proprietary and
+    accessed only via the paid API.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.searoutes.com
+      documented: true
+      note: All Ocean Routing, Geocoding, CO2, Vessel, Search, and Weather endpoints. Auth via x-api-key header.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Searoutes API reference or llms.txt as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events surface is documented; real-time-flavored data is polled over REST.
+  endpointsConfirmedRest:
+    - GET  https://api.searoutes.com/route/v2/sea/{locations}
+    - GET  https://api.searoutes.com/route/v2/sea/{locations}/plan
+    - GET  https://api.searoutes.com/geocoding/v2/all
+    - GET  https://api.searoutes.com/geocoding/v2/area
+    - GET  https://api.searoutes.com/geocoding/v2/airport
+    - GET  https://api.searoutes.com/geocoding/v2/port
+    - GET  https://api.searoutes.com/geocoding/v2/zip
+    - GET  https://api.searoutes.com/geocoding/v2/closest
+    - GET  https://api.searoutes.com/geocoding/v2/place
+    - GET  https://api.searoutes.com/co2/v2/shipment
+    - GET  https://api.searoutes.com/co2/v2/vessel
+    - GET  https://api.searoutes.com/co2/v2/road
+    - GET  https://api.searoutes.com/co2/v2/rail
+    - GET  https://api.searoutes.com/co2/v2/aircraft
+    - GET  https://api.searoutes.com/co2/v2/inland-water
+    - POST https://api.searoutes.com/co2/v2/run
+    - GET  https://api.searoutes.com/co2/v2/plan
+    - GET  https://api.searoutes.com/co2/v2/proformas/{hash}
+    - GET  https://api.searoutes.com/co2/v2/execution/{hash}
+    - GET  https://api.searoutes.com/vessel/v2/position
+    - GET  https://api.searoutes.com/vessel/v2/eta
+    - GET  https://api.searoutes.com/vessel/v2/arrivals
+    - GET  https://api.searoutes.com/vessel/v2/name
+    - GET  https://api.searoutes.com/vessel/v2/timeseries
+    - GET  https://api.searoutes.com/vessel/v2/trace
+    - GET  https://api.searoutes.com/search/v2/carriers
+    - GET  https://api.searoutes.com/search/v2/carrier/{id}
+    - GET  https://api.searoutes.com/search/v2/service
+    - GET  https://api.searoutes.com/search/v2/service/{id}
+    - GET  https://api.searoutes.com/weather/v2/forecast
+    - GET  https://api.searoutes.com/weather/v2/historical
+    - POST https://api.searoutes.com/weather/v2/track
+  endpointsModeled:
+    - note: >-
+        Endpoint paths above are taken from the published Searoutes developer
+        documentation and the developer.searoutes.com/llms.txt reference index
+        (confirmed as documented). Individual request/response field schemas in
+        the OpenAPI are summarized rather than exhaustively enumerated, since the
+        full JSON schemas are only visible behind an authenticated key.
+sources:
+  - url: https://developer.searoutes.com/reference/introduction
+    type: Documentation
+    note: API overview listing Carbon Emissions, Geocoding, Ocean Routing, Search, Vessel, and Weather collections.
+  - url: https://developer.searoutes.com/reference/intro/authentication
+    type: Documentation
+    note: Base URL https://api.searoutes.com and x-api-key header auth; 7-day/100-call trial keys.
+  - url: https://developer.searoutes.com/reference/getsearoute
+    type: APIReference
+    note: GET /route/v2/sea/{locations} returning distance (m), duration (ms), and crossed areas.
+  - url: https://developer.searoutes.com/llms.txt
+    type: Reference
+    note: Machine-readable index enumerating all v2 endpoint paths across the six API collections.
+  - url: https://searoutes.com/pricing/
+    type: Pricing
+    note: Annual subscription bundles - Ocean Routing from EUR 400/mo, Vessel Tracking from EUR 300/mo, Carbon Emissions custom.
+  - url: https://github.com/searoutes
+    type: SourceCode
+    note: Public GitHub org with example clients; the core API service is proprietary/hosted.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or other server-push protocol surface exists on Searoutes' API;
+    every documented endpoint is request/response REST over HTTPS. No AsyncAPI
+    document was created because there is no streaming transport on Searoutes'
+    own API to model. The apis.yml catalogs the six REST API collections with an
+    OpenAPI, Postman collection, and Open Collection.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

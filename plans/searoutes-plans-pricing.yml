@@ -1,0 +1,141 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Searoutes
+providerId: searoutes
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Maritime
+- Sea Routing
+- CO2 Emissions
+- Vessel Tracking
+- Plans
+description: >-
+  Searoutes sells its APIs as annual subscriptions bundled by product (Ocean
+  Routing, Vessel Tracking, Carbon Emissions), each with an included monthly
+  call volume and a flat monthly price with no integration fees, hidden costs,
+  or variable charges. A free 7-day trial key granting up to 100 calls is
+  available on signup. Product bundles and included volumes overlap functional
+  APIs (for example the Ocean Routing bundle also includes geocoding).
+  Per-call overage rates and the full tier ladder are not published and must be
+  confirmed with Searoutes sales.
+notes: >-
+  Prices are entry ("starting from") figures published on the Searoutes pricing
+  page in EUR and are billed on an annual subscription. Verify current bundles,
+  included volumes, and overage handling with Searoutes during reconciliation.
+sources:
+- https://searoutes.com/pricing/
+- https://searoutes.com/routing-api/
+- https://developer.searoutes.com/reference/intro/authentication
+plans:
+- id: searoutes-trial
+  name: Free Trial
+  type: free
+  description: >-
+    Self-service trial key issued on signup, valid for 7 days and up to 100
+    total API calls across products.
+  entries:
+  - label: Trial Calls
+    name: trial_calls
+    type: free
+    metric: requests
+    limit: 100
+    timeFrame: lifetime
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Ocean Routing
+    note: Trial access
+  - name: Geocoding
+    note: Trial access
+- id: searoutes-ocean-routing
+  name: Ocean Routing API
+  type: subscription
+  description: >-
+    Annual subscription for sea routing, distances, zone avoidance, geocoding,
+    and historical vessel positions. Starting from EUR 400 per month.
+  entries:
+  - label: Ocean Routing Calls
+    name: ocean_routing_calls
+    type: subscription
+    metric: requests
+    limit: 3000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from EUR 400 / month (annual)
+    userMultiplied: false
+  elements:
+  - name: Ocean Routing
+  - name: Geocoding
+  - name: Zone Avoidance
+- id: searoutes-vessel-tracking
+  name: Vessel Tracking API
+  type: subscription
+  description: >-
+    Annual subscription for AIS data - vessel positions, specifics, ETA
+    predictions, and historical traces. Starting from EUR 300 per month.
+  entries:
+  - label: Vessel Tracking Calls
+    name: vessel_tracking_calls
+    type: subscription
+    metric: requests
+    limit: 5000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from EUR 300 / month (annual)
+    userMultiplied: false
+  elements:
+  - name: Vessel Positions
+  - name: ETA Predictions
+  - name: Historical Traces
+- id: searoutes-carbon-emissions
+  name: Carbon Emissions API
+  type: subscription
+  description: >-
+    Annual subscription for multimodal CO2e calculations using a GLEC-accredited
+    methodology, with dashboard tooling. Custom quote; minimum 1,000 calls per
+    month.
+  entries:
+  - label: Carbon Emissions Calls
+    name: carbon_emissions_calls
+    type: subscription
+    metric: requests
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: custom quote (contact sales)
+    userMultiplied: false
+  elements:
+  - name: Multimodal CO2e
+  - name: GLEC Methodology
+  - name: Emissions Dashboard
+- id: searoutes-enterprise
+  name: Enterprise / Custom
+  type: enterprise
+  description: >-
+    Custom bundles, higher volumes, and negotiated terms with a 99.9% uptime
+    commitment. Contact Searoutes sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: SLA 99.9% Uptime
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,71 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Searoutes
+providerId: searoutes
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Maritime
+- Sea Routing
+- CO2 Emissions
+- Vessel Tracking
+- Rate Limiting
+- Quotas
+description: >-
+  Searoutes gates usage primarily by monthly call quotas tied to the purchased
+  subscription bundle rather than by published per-second/per-minute throttles.
+  The free trial key is capped at 100 calls over a 7-day validity window. Paid
+  bundles include a minimum monthly call allotment (Ocean Routing from 3,000/mo,
+  Vessel Tracking from 5,000/mo, Carbon Emissions from 1,000/mo). Individual
+  endpoints may be disabled depending on the service plan attached to an API
+  key. Explicit burst/QPS limits and 429 handling details are not published and
+  should be confirmed with Searoutes.
+notes: >-
+  Values are drawn from the Searoutes pricing and authentication pages. No
+  public per-second rate limit or Retry-After contract is documented; verify
+  throttling behavior and overage handling with Searoutes during reconciliation.
+sources:
+- https://searoutes.com/pricing/
+- https://developer.searoutes.com/reference/intro/authentication
+- https://developer.searoutes.com/reference/introduction
+responseCodes:
+  throttled: 429
+  unauthorized: 401
+limits:
+- name: Trial Calls
+  scope: api_key
+  metric: requests
+  limit: 100 over 7 days
+  notes: Free trial key; expires 7 days after issue.
+- name: Ocean Routing Monthly Quota
+  scope: subscription
+  metric: requests
+  limit: from 3000 per month
+  notes: Included with the Ocean Routing bundle; higher volumes negotiable.
+- name: Vessel Tracking Monthly Quota
+  scope: subscription
+  metric: requests
+  limit: from 5000 per month
+  notes: Included with the Vessel Tracking bundle.
+- name: Carbon Emissions Monthly Quota
+  scope: subscription
+  metric: requests
+  limit: from 1000 per month
+  notes: Included with the Carbon Emissions bundle.
+- name: Per-Endpoint Plan Gating
+  scope: api_key
+  metric: endpoints
+  limit: plan-dependent
+  notes: Some endpoints return errors if not covered by the key's service plan.
+policies:
+- name: Quota-Based Access
+  description: Access is governed by the monthly call allotment of the purchased bundle rather than a published QPS ceiling.
+- name: Plan-Scoped Endpoints
+  description: An API key only unlocks endpoints included in its subscribed products.
+- name: Backoff Strategy
+  description: Clients should implement retry with exponential backoff on 429 responses and monitor remaining monthly quota.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

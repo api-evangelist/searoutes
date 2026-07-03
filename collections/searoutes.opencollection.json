@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searoutes API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "x-api-key",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ocean Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get sea route between locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/route/v2/sea/-1.27,50.80;8.83,53.88?speedInKts=20",
+            "headers": [
+              { "name": "x-api-key", "value": "{{apiKey}}" }
+            ]
+          },
+          "docs": "Returns the sea route, distance (meters), duration (ms), and crossed areas between locations."
+        },
+        {
+          "info": {
+            "name": "Get a detailed sea route plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/route/v2/sea/-1.27,50.80;8.83,53.88/plan?speedInKts=20",
+            "headers": [
+              { "name": "x-api-key", "value": "{{apiKey}}" }
+            ]
+          },
+          "docs": "Returns a leg-by-leg voyage plan with timing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Find a port", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/port?query=hamburg",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Find ports by name or locode."
+        },
+        {
+          "info": { "name": "Find all location types", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/all?query=rotterdam",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Search ports, airports, terminals, and postal codes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CO2 Emissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Shipment CO2e", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/shipment?fromLocode=NLRTM&toLocode=SGSIN&nContainers=1",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Multimodal shipment CO2e (ISO 14083 / GLEC)."
+        },
+        {
+          "info": { "name": "Road CO2e", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/road/-1.27,50.80;8.83,53.88",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Road transport emissions between coordinates."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vessel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Latest vessel position", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/position?imo=9321483",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Retrieve the latest AIS position of a vessel by IMO or MMSI."
+        },
+        {
+          "info": { "name": "Vessel trace", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/trace?imo=9321483",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Processed vessel trajectory/route history."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Search carriers", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/search/v2/carriers?query=maersk",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Find carriers by name or SCAC code."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Weather",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Weather forecast", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/weather/v2/forecast?lat=53.55&lon=9.99",
+            "headers": [ { "name": "x-api-key", "value": "{{apiKey}}" } ]
+          },
+          "docs": "Bulk weather forecast up to 14 days out."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

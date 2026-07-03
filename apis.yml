@@ -1,0 +1,185 @@
+aid: searoutes
+url: https://raw.githubusercontent.com/api-evangelist/searoutes/refs/heads/main/apis.yml
+name: Searoutes
+kind: company
+description: Searoutes is a maritime routing and carbon-emissions API platform for
+  logistics, freight forwarding, and supply-chain teams. Its REST APIs compute
+  point-to-point, port-to-point, and port-to-port sea routes with distances and
+  durations (including SECA, HRA, and ice-area avoidance), geocode ports, airports,
+  and places, calculate multimodal CO2e emissions (sea, road, rail, air, inland
+  waterway) using a GLEC-accredited methodology, track vessels via AIS (positions,
+  ETAs, traces, arrivals), look up carriers and services, and return historical,
+  real-time, and forecasted weather along routes. All APIs are served from
+  https://api.searoutes.com and authenticated with an x-api-key header.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Maritime
+- Sea Routing
+- Ocean Freight
+- CO2 Emissions
+- Carbon Accounting
+- Vessel Tracking
+- AIS
+- Geocoding
+- Logistics
+- Supply Chain
+created: '2026-07-03'
+modified: '2026-07-03'
+specificationVersion: '0.19'
+apis:
+- aid: searoutes:searoutes-ocean-routing-api
+  name: Searoutes Ocean Routing API
+  tags:
+  - Sea Routing
+  - Ocean Freight
+  - Distances
+  - Voyage Planning
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.searoutes.com/reference/getsearoute
+  baseURL: https://api.searoutes.com
+  properties:
+  - url: https://developer.searoutes.com/reference/introduction
+    type: Documentation
+  - url: https://developer.searoutes.com/reference/getsearoute
+    type: APIReference
+  - url: openapi/searoutes-openapi.yml
+    type: OpenAPI
+  - url: collections/searoutes.postman_collection.json
+    type: PostmanCollection
+  - url: collections/searoutes.opencollection.json
+    type: OpenCollection
+  description: Compute point-to-point, port-to-point, and port-to-port sea routes
+    between up to twenty coordinates or UN/LOCODEs, returning route geometry,
+    distance in meters, duration in milliseconds, and crossed areas. Supports SECA,
+    High Risk Area, and ice-area avoidance, area blocking, vessel draft and speed
+    inputs, and departure-time-aware planning.
+- aid: searoutes:searoutes-geocoding-api
+  name: Searoutes Geocoding API
+  tags:
+  - Geocoding
+  - Ports
+  - Airports
+  - Locations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.searoutes.com/reference/introduction
+  baseURL: https://api.searoutes.com
+  properties:
+  - url: https://developer.searoutes.com/reference/introduction
+    type: Documentation
+  - url: openapi/searoutes-openapi.yml
+    type: OpenAPI
+  - url: collections/searoutes.postman_collection.json
+    type: PostmanCollection
+  - url: collections/searoutes.opencollection.json
+    type: OpenCollection
+  description: Resolve ports, airports, terminals, routing areas, postal codes, and
+    arbitrary places by name, UN/LOCODE, or IATA code, find the nearest location or
+    closest sea point to a coordinate, and search all location types in a single
+    call.
+- aid: searoutes:searoutes-co2-emissions-api
+  name: Searoutes CO2 Emissions API
+  tags:
+  - CO2 Emissions
+  - Carbon Accounting
+  - GLEC
+  - Multimodal
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.searoutes.com/reference/introduction
+  baseURL: https://api.searoutes.com
+  properties:
+  - url: https://developer.searoutes.com/reference/introduction
+    type: Documentation
+  - url: openapi/searoutes-openapi.yml
+    type: OpenAPI
+  - url: collections/searoutes.postman_collection.json
+    type: PostmanCollection
+  - url: collections/searoutes.opencollection.json
+    type: OpenCollection
+  description: Calculate CO2e emissions for multimodal shipments and individual legs
+    across sea (vessel and trade-lane), road, rail, air, and inland-waterway
+    transport using an ISO 14083 / GLEC-accredited methodology, plus milk-run,
+    carrier-plan, proforma, and ocean-schedule execution emission breakdowns.
+- aid: searoutes:searoutes-vessel-tracking-api
+  name: Searoutes Vessel Tracking API
+  tags:
+  - Vessel Tracking
+  - AIS
+  - ETA
+  - Positions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.searoutes.com/reference/introduction
+  baseURL: https://api.searoutes.com
+  properties:
+  - url: https://developer.searoutes.com/reference/introduction
+    type: Documentation
+  - url: openapi/searoutes-openapi.yml
+    type: OpenAPI
+  - url: collections/searoutes.postman_collection.json
+    type: PostmanCollection
+  - url: collections/searoutes.opencollection.json
+    type: OpenCollection
+  description: Retrieve the latest position of a vessel by IMO or MMSI, look up
+    vessels by name, predict ETAs from AIS, list scheduled port arrivals, and
+    access historical position time series and processed trajectory traces.
+- aid: searoutes:searoutes-search-carriers-api
+  name: Searoutes Search & Carriers API
+  tags:
+  - Carriers
+  - Services
+  - SCAC
+  - Search
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.searoutes.com/reference/introduction
+  baseURL: https://api.searoutes.com
+  properties:
+  - url: https://developer.searoutes.com/reference/introduction
+    type: Documentation
+  - url: openapi/searoutes-openapi.yml
+    type: OpenAPI
+  - url: collections/searoutes.postman_collection.json
+    type: PostmanCollection
+  - url: collections/searoutes.opencollection.json
+    type: OpenCollection
+  description: Find ocean carriers by name or SCAC code, retrieve carrier details,
+    and search liner services by name with optional carrier filtering to return the
+    vessels and ports on each service.
+- aid: searoutes:searoutes-weather-api
+  name: Searoutes Weather API
+  tags:
+  - Weather
+  - Forecast
+  - Historical
+  - Routes
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.searoutes.com/reference/introduction
+  baseURL: https://api.searoutes.com
+  properties:
+  - url: https://developer.searoutes.com/reference/introduction
+    type: Documentation
+  - url: openapi/searoutes-openapi.yml
+    type: OpenAPI
+  - url: collections/searoutes.postman_collection.json
+    type: PostmanCollection
+  - url: collections/searoutes.opencollection.json
+    type: OpenCollection
+  description: Query historical (2013-present), real-time, and forecasted weather at
+    a location, retrieve bulk forecasts up to fourteen days out, and obtain weather
+    conditions along a specific route track.
+common:
+- type: GitHubOrganization
+  url: https://github.com/searoutes
+- type: LinkedIn
+  url: https://www.linkedin.com/company/searoutes
+- type: Website
+  url: https://searoutes.com
+- type: Documentation
+  url: https://developer.searoutes.com/reference/introduction
+- type: Plans
+  url: plans/searoutes-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/searoutes-rate-limits.yml
+- type: FinOps
+  url: finops/searoutes-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,188 @@
+{
+  "info": {
+    "name": "Searoutes API",
+    "description": "Maritime routing and carbon-emissions REST API. Base URL https://api.searoutes.com, authenticated with an x-api-key header. Endpoints modeled from the Searoutes developer documentation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "x-api-key" },
+      { "key": "value", "value": "{{apiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.searoutes.com" },
+    { "key": "apiKey", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Ocean Routing",
+      "item": [
+        {
+          "name": "Get sea route between locations",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/route/v2/sea/-1.27,50.80;8.83,53.88?speedInKts=20",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "route", "v2", "sea", "-1.27,50.80;8.83,53.88" ],
+              "query": [ { "key": "speedInKts", "value": "20" } ]
+            },
+            "description": "Returns the sea route, distance (meters), duration (ms), and crossed areas."
+          }
+        },
+        {
+          "name": "Get a detailed sea route plan",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/route/v2/sea/-1.27,50.80;8.83,53.88/plan?speedInKts=20",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "route", "v2", "sea", "-1.27,50.80;8.83,53.88", "plan" ],
+              "query": [ { "key": "speedInKts", "value": "20" } ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Geocoding",
+      "item": [
+        {
+          "name": "Find a port",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/geocoding/v2/port?query=hamburg",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "geocoding", "v2", "port" ],
+              "query": [ { "key": "query", "value": "hamburg" } ]
+            }
+          }
+        },
+        {
+          "name": "Find all location types",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/geocoding/v2/all?query=rotterdam",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "geocoding", "v2", "all" ],
+              "query": [ { "key": "query", "value": "rotterdam" } ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CO2 Emissions",
+      "item": [
+        {
+          "name": "Shipment CO2e",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/co2/v2/shipment?fromLocode=NLRTM&toLocode=SGSIN&nContainers=1",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "co2", "v2", "shipment" ],
+              "query": [
+                { "key": "fromLocode", "value": "NLRTM" },
+                { "key": "toLocode", "value": "SGSIN" },
+                { "key": "nContainers", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Road CO2e",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/co2/v2/road/-1.27,50.80;8.83,53.88",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "co2", "v2", "road", "-1.27,50.80;8.83,53.88" ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vessel",
+      "item": [
+        {
+          "name": "Latest vessel position",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/vessel/v2/position?imo=9321483",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "vessel", "v2", "position" ],
+              "query": [ { "key": "imo", "value": "9321483" } ]
+            }
+          }
+        },
+        {
+          "name": "Vessel trace",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/vessel/v2/trace?imo=9321483",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "vessel", "v2", "trace" ],
+              "query": [ { "key": "imo", "value": "9321483" } ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "item": [
+        {
+          "name": "Search carriers",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/search/v2/carriers?query=maersk",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "search", "v2", "carriers" ],
+              "query": [ { "key": "query", "value": "maersk" } ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Weather",
+      "item": [
+        {
+          "name": "Weather forecast",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "x-api-key", "value": "{{apiKey}}" } ],
+            "url": {
+              "raw": "{{baseUrl}}/weather/v2/forecast?lat=53.55&lon=9.99",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "weather", "v2", "forecast" ],
+              "query": [
+                { "key": "lat", "value": "53.55" },
+                { "key": "lon", "value": "9.99" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
