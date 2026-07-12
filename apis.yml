@@ -166,6 +166,10 @@ apis:
     a location, retrieve bulk forecasts up to fourteen days out, and obtain weather
     conditions along a specific route track.
 common:
+- type: DomainSecurity
+  url: security/searoutes-domain-security.yml
+- type: Authentication
+  url: authentication/searoutes-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/searoutes
 - type: LinkedIn
@@ -180,6 +184,8 @@ common:
   url: rate-limits/searoutes-rate-limits.yml
 - type: FinOps
   url: finops/searoutes-finops.yml
+- url: https://searoutes.com/blog/feed/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

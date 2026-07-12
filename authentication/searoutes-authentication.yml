@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/searoutes-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: API key issued on signup and shown on the developer documentation authentication
+    page. Pass it in the x-api-key request header.
+  sources:
+  - openapi/searoutes-openapi.yml
