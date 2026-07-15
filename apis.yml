@@ -166,6 +166,8 @@ apis:
     a location, retrieve bulk forecasts up to fourteen days out, and obtain weather
     conditions along a specific route track.
 common:
+- type: AgenticAccess
+  url: agentic-access/searoutes-agentic-access.yml
 - type: DomainSecurity
   url: security/searoutes-domain-security.yml
 - type: Authentication

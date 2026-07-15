@@ -1,0 +1,348 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/searoutes-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 32
+  by_action_class:
+    connected: 30
+    acting: 2
+  by_consequence:
+    read: 30
+    write: 2
+  human_in_the_loop_required: 0
+operations:
+- path: /route/v2/sea/{locations}
+  method: get
+  operationId: getSeaRoute
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /route/v2/sea/{locations}/plan
+  method: get
+  operationId: getSeaRoutePlan
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geocoding/v2/all
+  method: get
+  operationId: geocodeAll
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geocoding/v2/port
+  method: get
+  operationId: geocodePort
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geocoding/v2/airport
+  method: get
+  operationId: geocodeAirport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geocoding/v2/area
+  method: get
+  operationId: geocodeArea
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geocoding/v2/zip
+  method: get
+  operationId: geocodeZip
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geocoding/v2/closest
+  method: get
+  operationId: geocodeClosest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /geocoding/v2/place
+  method: get
+  operationId: geocodePlace
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/shipment
+  method: get
+  operationId: getShipmentCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/vessel
+  method: get
+  operationId: getVesselCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/road
+  method: get
+  operationId: getRoadCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/rail
+  method: get
+  operationId: getRailCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/aircraft
+  method: get
+  operationId: getAircraftCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/inland-water
+  method: get
+  operationId: getInlandWaterCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/run
+  method: post
+  operationId: getMilkRunCo2
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /co2/v2/plan
+  method: get
+  operationId: getPlanCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/proformas/{hash}
+  method: get
+  operationId: getProformaCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /co2/v2/execution/{hash}
+  method: get
+  operationId: getExecutionCo2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /vessel/v2/position
+  method: get
+  operationId: getVesselPosition
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /vessel/v2/eta
+  method: get
+  operationId: getVesselEta
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /vessel/v2/arrivals
+  method: get
+  operationId: getVesselArrivals
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /vessel/v2/name
+  method: get
+  operationId: searchVesselByName
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /vessel/v2/timeseries
+  method: get
+  operationId: getVesselTimeseries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /vessel/v2/trace
+  method: get
+  operationId: getVesselTrace
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /search/v2/carriers
+  method: get
+  operationId: searchCarriers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /search/v2/carrier/{id}
+  method: get
+  operationId: getCarrier
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /search/v2/service
+  method: get
+  operationId: searchServices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /search/v2/service/{id}
+  method: get
+  operationId: getService
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /weather/v2/forecast
+  method: get
+  operationId: getWeatherForecast
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /weather/v2/historical
+  method: get
+  operationId: getWeatherHistorical
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /weather/v2/track
+  method: post
+  operationId: getWeatherAlongTrack
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
