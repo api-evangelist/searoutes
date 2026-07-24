@@ -1,0 +1,112 @@
+openapi: 3.0.1
+info:
+  title: Searoutes CO2 Emissions Weather API
+  description: Maritime routing and carbon-emissions REST API. Compute sea routes and distances, geocode ports and places, calculate multimodal CO2e emissions, track vessels via AIS, look up carriers and services, and retrieve weather along routes. All endpoints are served from https://api.searoutes.com and authenticated with an x-api-key header. Endpoint paths are modeled from the published Searoutes developer documentation and llms.txt reference index; request/response schemas are summarized rather than exhaustive.
+  termsOfService: https://searoutes.com/terms/
+  contact:
+    name: Searoutes
+    email: contact@searoutes.com
+    url: https://developer.searoutes.com/reference/introduction
+  version: '2.0'
+servers:
+- url: https://api.searoutes.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: Weather
+  description: Historical, real-time, and forecasted weather.
+paths:
+  /weather/v2/forecast:
+    get:
+      operationId: getWeatherForecast
+      tags:
+      - Weather
+      summary: Retrieve bulk weather forecasts (up to 14 days)
+      parameters:
+      - name: lat
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: lon
+        in: query
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          $ref: '#/components/responses/WeatherResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /weather/v2/historical:
+    get:
+      operationId: getWeatherHistorical
+      tags:
+      - Weather
+      summary: Access historical weather data (2013-present)
+      parameters:
+      - name: lat
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: lon
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: date
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          $ref: '#/components/responses/WeatherResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /weather/v2/track:
+    post:
+      operationId: getWeatherAlongTrack
+      tags:
+      - Weather
+      summary: Obtain weather conditions along a specific route
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          $ref: '#/components/responses/WeatherResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    WeatherResponse:
+      description: Weather conditions (historical, current, or forecast).
+      content:
+        application/json:
+          schema:
+            type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued on signup and shown on the developer documentation authentication page. Pass it in the x-api-key request header.

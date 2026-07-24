@@ -1,0 +1,118 @@
+openapi: 3.0.1
+info:
+  title: Searoutes CO2 Emissions Search API
+  description: Maritime routing and carbon-emissions REST API. Compute sea routes and distances, geocode ports and places, calculate multimodal CO2e emissions, track vessels via AIS, look up carriers and services, and retrieve weather along routes. All endpoints are served from https://api.searoutes.com and authenticated with an x-api-key header. Endpoint paths are modeled from the published Searoutes developer documentation and llms.txt reference index; request/response schemas are summarized rather than exhaustive.
+  termsOfService: https://searoutes.com/terms/
+  contact:
+    name: Searoutes
+    email: contact@searoutes.com
+    url: https://developer.searoutes.com/reference/introduction
+  version: '2.0'
+servers:
+- url: https://api.searoutes.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: Search
+  description: Carrier and liner-service lookup.
+paths:
+  /search/v2/carriers:
+    get:
+      operationId: searchCarriers
+      tags:
+      - Search
+      summary: Find maritime carriers by name or SCAC code
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /search/v2/carrier/{id}:
+    get:
+      operationId: getCarrier
+      tags:
+      - Search
+      summary: Retrieve a specific carrier
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /search/v2/service:
+    get:
+      operationId: searchServices
+      tags:
+      - Search
+      summary: Search services by name with optional carrier filtering
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      - name: carrierId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /search/v2/service/{id}:
+    get:
+      operationId: getService
+      tags:
+      - Search
+      summary: Get service details including vessels and ports
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    SearchResponse:
+      description: Carrier or service search results.
+      content:
+        application/json:
+          schema:
+            type: object
+  parameters:
+    Query:
+      name: query
+      in: query
+      required: true
+      description: Free-text search term (name, code, or locode).
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued on signup and shown on the developer documentation authentication page. Pass it in the x-api-key request header.

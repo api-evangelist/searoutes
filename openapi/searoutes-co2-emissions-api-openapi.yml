@@ -1,0 +1,231 @@
+openapi: 3.0.1
+info:
+  title: Searoutes CO2 Emissions API
+  description: Maritime routing and carbon-emissions REST API. Compute sea routes and distances, geocode ports and places, calculate multimodal CO2e emissions, track vessels via AIS, look up carriers and services, and retrieve weather along routes. All endpoints are served from https://api.searoutes.com and authenticated with an x-api-key header. Endpoint paths are modeled from the published Searoutes developer documentation and llms.txt reference index; request/response schemas are summarized rather than exhaustive.
+  termsOfService: https://searoutes.com/terms/
+  contact:
+    name: Searoutes
+    email: contact@searoutes.com
+    url: https://developer.searoutes.com/reference/introduction
+  version: '2.0'
+servers:
+- url: https://api.searoutes.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: CO2 Emissions
+  description: Multimodal CO2e emission calculations (sea, road, rail, air, inland water).
+paths:
+  /co2/v2/shipment:
+    get:
+      operationId: getShipmentCo2
+      tags:
+      - CO2 Emissions
+      summary: Get CO2e emissions for a multimodal shipment
+      description: ISO 14083 / GLEC-accredited multimodal shipment CO2e (v2.1).
+      parameters:
+      - name: fromLocode
+        in: query
+        schema:
+          type: string
+      - name: toLocode
+        in: query
+        schema:
+          type: string
+      - name: nContainers
+        in: query
+        schema:
+          type: integer
+      - name: containerSizeTeu
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/vessel:
+    get:
+      operationId: getVesselCo2
+      tags:
+      - CO2 Emissions
+      summary: Compute emissions for an ocean voyage by vessel or trade lane
+      parameters:
+      - name: imo
+        in: query
+        schema:
+          type: integer
+      - name: fromLocode
+        in: query
+        schema:
+          type: string
+      - name: toLocode
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/road:
+    get:
+      operationId: getRoadCo2
+      tags:
+      - CO2 Emissions
+      summary: Calculate road transport emissions
+      parameters:
+      - $ref: '#/components/parameters/Locations'
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/rail:
+    get:
+      operationId: getRailCo2
+      tags:
+      - CO2 Emissions
+      summary: Compute rail journey emissions
+      parameters:
+      - $ref: '#/components/parameters/Locations'
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/aircraft:
+    get:
+      operationId: getAircraftCo2
+      tags:
+      - CO2 Emissions
+      summary: Determine air cargo or passenger emissions
+      parameters:
+      - $ref: '#/components/parameters/Locations'
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/inland-water:
+    get:
+      operationId: getInlandWaterCo2
+      tags:
+      - CO2 Emissions
+      summary: Calculate inland waterway emissions
+      parameters:
+      - $ref: '#/components/parameters/Locations'
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/run:
+    post:
+      operationId: getMilkRunCo2
+      tags:
+      - CO2 Emissions
+      summary: Compute milk-run (collection/delivery) emissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/plan:
+    get:
+      operationId: getPlanCo2
+      tags:
+      - CO2 Emissions
+      summary: Get CO2e statistics for carriers on a port pair
+      parameters:
+      - name: fromLocode
+        in: query
+        schema:
+          type: string
+      - name: toLocode
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/proformas/{hash}:
+    get:
+      operationId: getProformaCo2
+      tags:
+      - CO2 Emissions
+      summary: Retrieve CO2 details for a specific itinerary
+      parameters:
+      - name: hash
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /co2/v2/execution/{hash}:
+    get:
+      operationId: getExecutionCo2
+      tags:
+      - CO2 Emissions
+      summary: Access CO2e breakdown for an ocean schedule execution
+      parameters:
+      - name: hash
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Co2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Co2Response:
+      description: CO2e emission results in grams/kilograms with methodology metadata.
+      content:
+        application/json:
+          schema:
+            type: object
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Locations:
+      name: locations
+      in: path
+      required: true
+      description: Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions.
+      schema:
+        type: string
+      example: -1.27,50.80;8.83,53.88
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued on signup and shown on the developer documentation authentication page. Pass it in the x-api-key request header.

@@ -1,0 +1,176 @@
+openapi: 3.0.1
+info:
+  title: Searoutes CO2 Emissions Ocean Routing API
+  description: Maritime routing and carbon-emissions REST API. Compute sea routes and distances, geocode ports and places, calculate multimodal CO2e emissions, track vessels via AIS, look up carriers and services, and retrieve weather along routes. All endpoints are served from https://api.searoutes.com and authenticated with an x-api-key header. Endpoint paths are modeled from the published Searoutes developer documentation and llms.txt reference index; request/response schemas are summarized rather than exhaustive.
+  termsOfService: https://searoutes.com/terms/
+  contact:
+    name: Searoutes
+    email: contact@searoutes.com
+    url: https://developer.searoutes.com/reference/introduction
+  version: '2.0'
+servers:
+- url: https://api.searoutes.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: Ocean Routing
+  description: Sea routes, distances, durations, and voyage plans.
+paths:
+  /route/v2/sea/{locations}:
+    get:
+      operationId: getSeaRoute
+      tags:
+      - Ocean Routing
+      summary: Get sea route between locations
+      description: Returns the sea route between a source and target location (and up to 20 waypoints) as coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons, along with route distance (meters), duration (milliseconds), and the crossed areas.
+      parameters:
+      - $ref: '#/components/parameters/Locations'
+      - name: continuousCoordinates
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: allowIceAreas
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: avoidHRA
+        in: query
+        description: Avoid the High Risk Area.
+        schema:
+          type: boolean
+          default: false
+      - name: avoidSeca
+        in: query
+        description: Avoid Sulphur Emission Control Areas.
+        schema:
+          type: boolean
+          default: false
+      - name: blockAreas
+        in: query
+        description: Comma-separated area ids to block.
+        schema:
+          type: string
+      - name: departure
+        in: query
+        description: Departure time as a Unix timestamp in milliseconds.
+        schema:
+          type: integer
+          format: int64
+      - name: imo
+        in: query
+        description: Vessel IMO number.
+        schema:
+          type: integer
+      - name: speed
+        in: query
+        description: Vessel speed in km/h.
+        schema:
+          type: number
+      - name: speedInKts
+        in: query
+        description: Vessel speed in knots.
+        schema:
+          type: number
+      - name: vesselDraft
+        in: query
+        description: Vessel draft in meters.
+        schema:
+          type: number
+      responses:
+        '200':
+          description: A GeoJSON FeatureCollection describing the route.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /route/v2/sea/{locations}/plan:
+    get:
+      operationId: getSeaRoutePlan
+      tags:
+      - Ocean Routing
+      summary: Get a detailed sea route plan
+      description: Returns a sea route with a leg-by-leg voyage plan including timing based on the departure time and vessel speed.
+      parameters:
+      - $ref: '#/components/parameters/Locations'
+      - name: departure
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - name: speedInKts
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          description: A route plan with timed legs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Locations:
+      name: locations
+      in: path
+      required: true
+      description: Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions.
+      schema:
+        type: string
+      example: -1.27,50.80;8.83,53.88
+  schemas:
+    RouteResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                example: Feature
+              geometry:
+                type: object
+              properties:
+                type: object
+                properties:
+                  distance:
+                    type: number
+                    description: Route distance in meters.
+                  duration:
+                    type: number
+                    description: Route duration in milliseconds.
+                  crossedAreas:
+                    type: array
+                    items:
+                      type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued on signup and shown on the developer documentation authentication page. Pass it in the x-api-key request header.

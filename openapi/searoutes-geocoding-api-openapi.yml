@@ -1,0 +1,164 @@
+openapi: 3.0.1
+info:
+  title: Searoutes CO2 Emissions Geocoding API
+  description: Maritime routing and carbon-emissions REST API. Compute sea routes and distances, geocode ports and places, calculate multimodal CO2e emissions, track vessels via AIS, look up carriers and services, and retrieve weather along routes. All endpoints are served from https://api.searoutes.com and authenticated with an x-api-key header. Endpoint paths are modeled from the published Searoutes developer documentation and llms.txt reference index; request/response schemas are summarized rather than exhaustive.
+  termsOfService: https://searoutes.com/terms/
+  contact:
+    name: Searoutes
+    email: contact@searoutes.com
+    url: https://developer.searoutes.com/reference/introduction
+  version: '2.0'
+servers:
+- url: https://api.searoutes.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: Geocoding
+  description: Ports, airports, places, areas, postal codes, and nearest points.
+paths:
+  /geocoding/v2/all:
+    get:
+      operationId: geocodeAll
+      tags:
+      - Geocoding
+      summary: Find all types of locations
+      description: Search ports, airports, terminals, and postal codes in one call.
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          $ref: '#/components/responses/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /geocoding/v2/port:
+    get:
+      operationId: geocodePort
+      tags:
+      - Geocoding
+      summary: Find ports by name or locode
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          $ref: '#/components/responses/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /geocoding/v2/airport:
+    get:
+      operationId: geocodeAirport
+      tags:
+      - Geocoding
+      summary: Search airports by name, locode, or IATA code
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          $ref: '#/components/responses/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /geocoding/v2/area:
+    get:
+      operationId: geocodeArea
+      tags:
+      - Geocoding
+      summary: Locate routing areas by name
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          $ref: '#/components/responses/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /geocoding/v2/zip:
+    get:
+      operationId: geocodeZip
+      tags:
+      - Geocoding
+      summary: Retrieve coordinates for postal codes
+      parameters:
+      - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          $ref: '#/components/responses/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /geocoding/v2/closest:
+    get:
+      operationId: geocodeClosest
+      tags:
+      - Geocoding
+      summary: Identify nearest locations from coordinates
+      parameters:
+      - name: lat
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: lon
+        in: query
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          $ref: '#/components/responses/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /geocoding/v2/place:
+    get:
+      operationId: geocodePlace
+      tags:
+      - Geocoding
+      summary: Check if coordinates are at sea or find the closest sea point
+      parameters:
+      - name: lat
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: lon
+        in: query
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          $ref: '#/components/responses/GeocodingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    GeocodingResponse:
+      description: A GeoJSON FeatureCollection of matching locations.
+      content:
+        application/json:
+          schema:
+            type: object
+  parameters:
+    Query:
+      name: query
+      in: query
+      required: true
+      description: Free-text search term (name, code, or locode).
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key issued on signup and shown on the developer documentation authentication page. Pass it in the x-api-key request header.
