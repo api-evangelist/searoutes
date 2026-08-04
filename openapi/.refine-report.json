@@ -1,0 +1,24 @@
+{
+  "provider": "searoutes",
+  "sources": [
+    "searoutes-co2-emissions-api-openapi.yml",
+    "searoutes-geocoding-api-openapi.yml",
+    "searoutes-ocean-routing-api-openapi.yml",
+    "searoutes-search-api-openapi.yml",
+    "searoutes-vessel-api-openapi.yml",
+    "searoutes-weather-api-openapi.yml"
+  ],
+  "outputs": [
+    "searoutes-co2-emissions-api-openapi.yml",
+    "searoutes-geocoding-api-openapi.yml",
+    "searoutes-ocean-routing-api-openapi.yml",
+    "searoutes-search-api-openapi.yml",
+    "searoutes-vessel-api-openapi.yml",
+    "searoutes-weather-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
