@@ -1,0 +1,237 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searoutes CO2 Emissions API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CO2 Emissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CO2e emissions for a multimodal shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/shipment",
+            "params": [
+              {
+                "name": "fromLocode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toLocode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nContainers",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "containerSizeTeu",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "ISO 14083 / GLEC-accredited multimodal shipment CO2e (v2.1)."
+        },
+        {
+          "info": {
+            "name": "Compute emissions for an ocean voyage by vessel or trade lane",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/vessel",
+            "params": [
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromLocode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toLocode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Compute emissions for an ocean voyage by vessel or trade lane"
+        },
+        {
+          "info": {
+            "name": "Calculate road transport emissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/road",
+            "params": [
+              {
+                "name": "locations",
+                "value": "-1.27,50.80;8.83,53.88",
+                "type": "path",
+                "description": "Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+              }
+            ]
+          },
+          "docs": "Calculate road transport emissions"
+        },
+        {
+          "info": {
+            "name": "Compute rail journey emissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/rail",
+            "params": [
+              {
+                "name": "locations",
+                "value": "-1.27,50.80;8.83,53.88",
+                "type": "path",
+                "description": "Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+              }
+            ]
+          },
+          "docs": "Compute rail journey emissions"
+        },
+        {
+          "info": {
+            "name": "Determine air cargo or passenger emissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/aircraft",
+            "params": [
+              {
+                "name": "locations",
+                "value": "-1.27,50.80;8.83,53.88",
+                "type": "path",
+                "description": "Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+              }
+            ]
+          },
+          "docs": "Determine air cargo or passenger emissions"
+        },
+        {
+          "info": {
+            "name": "Calculate inland waterway emissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/inland-water",
+            "params": [
+              {
+                "name": "locations",
+                "value": "-1.27,50.80;8.83,53.88",
+                "type": "path",
+                "description": "Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+              }
+            ]
+          },
+          "docs": "Calculate inland waterway emissions"
+        },
+        {
+          "info": {
+            "name": "Compute milk-run (collection/delivery) emissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.searoutes.com/co2/v2/run",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute milk-run (collection/delivery) emissions"
+        },
+        {
+          "info": {
+            "name": "Get CO2e statistics for carriers on a port pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/plan",
+            "params": [
+              {
+                "name": "fromLocode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toLocode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get CO2e statistics for carriers on a port pair"
+        },
+        {
+          "info": {
+            "name": "Retrieve CO2 details for a specific itinerary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/proformas/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve CO2 details for a specific itinerary"
+        },
+        {
+          "info": {
+            "name": "Access CO2e breakdown for an ocean schedule execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/co2/v2/execution/:hash",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Access CO2e breakdown for an ocean schedule execution"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searoutes CO2 Emissions Search API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find maritime carriers by name or SCAC code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/search/v2/carriers",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              }
+            ]
+          },
+          "docs": "Find maritime carriers by name or SCAC code"
+        },
+        {
+          "info": {
+            "name": "Retrieve a specific carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/search/v2/carrier/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific carrier"
+        },
+        {
+          "info": {
+            "name": "Search services by name with optional carrier filtering",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/search/v2/service",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              },
+              {
+                "name": "carrierId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search services by name with optional carrier filtering"
+        },
+        {
+          "info": {
+            "name": "Get service details including vessels and ports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/search/v2/service/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get service details including vessels and ports"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

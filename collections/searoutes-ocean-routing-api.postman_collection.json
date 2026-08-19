@@ -1,0 +1,530 @@
+{
+  "item": [
+    {
+      "id": "d594029b-4b5a-4b28-b475-094cf424ae8d",
+      "name": "Ocean Routing",
+      "description": {
+        "content": "Sea routes, distances, durations, and voyage plans.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a4504ea-2e41-4e08-962c-c4691fc88cde",
+          "name": "Get sea route between locations",
+          "request": {
+            "name": "Get sea route between locations",
+            "description": {
+              "content": "Returns the sea route between a source and target location (and up to 20 waypoints) as coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons, along with route distance (meters), duration (milliseconds), and the crossed areas.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "route",
+                "v2",
+                "sea",
+                ":locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "continuousCoordinates",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "allowIceAreas",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "avoidHRA",
+                  "value": "false",
+                  "description": "Avoid the High Risk Area."
+                },
+                {
+                  "disabled": false,
+                  "key": "avoidSeca",
+                  "value": "false",
+                  "description": "Avoid Sulphur Emission Control Areas."
+                },
+                {
+                  "disabled": false,
+                  "key": "blockAreas",
+                  "value": "<string>",
+                  "description": "Comma-separated area ids to block."
+                },
+                {
+                  "disabled": false,
+                  "key": "departure",
+                  "value": "<long>",
+                  "description": "Departure time as a Unix timestamp in milliseconds."
+                },
+                {
+                  "disabled": false,
+                  "key": "imo",
+                  "value": "<integer>",
+                  "description": "Vessel IMO number."
+                },
+                {
+                  "disabled": false,
+                  "key": "speed",
+                  "value": "<number>",
+                  "description": "Vessel speed in km/h."
+                },
+                {
+                  "disabled": false,
+                  "key": "speedInKts",
+                  "value": "<number>",
+                  "description": "Vessel speed in knots."
+                },
+                {
+                  "disabled": false,
+                  "key": "vesselDraft",
+                  "value": "<number>",
+                  "description": "Vessel draft in meters."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locations",
+                  "description": "(Required) Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "657a79e7-9e9a-4fd8-9e94-3f3c11a6fa9e",
+              "name": "A GeoJSON FeatureCollection describing the route.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "v2",
+                    "sea",
+                    ":locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "continuousCoordinates",
+                      "value": "true"
+                    },
+                    {
+                      "key": "allowIceAreas",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avoidHRA",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avoidSeca",
+                      "value": "false"
+                    },
+                    {
+                      "key": "blockAreas",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departure",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "imo",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "speed",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "speedInKts",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vesselDraft",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locations",
+                      "description": "(Required) Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {\n        \"distance\": 6886.24881555857,\n        \"duration\": 6971.312063443883,\n        \"crossedAreas\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {\n        \"distance\": 5168.431792501612,\n        \"duration\": 5970.5509427186735,\n        \"crossedAreas\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5036c6e-73c9-43c7-bb17-a7cf0441f370",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "v2",
+                    "sea",
+                    ":locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "continuousCoordinates",
+                      "value": "true"
+                    },
+                    {
+                      "key": "allowIceAreas",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avoidHRA",
+                      "value": "false"
+                    },
+                    {
+                      "key": "avoidSeca",
+                      "value": "false"
+                    },
+                    {
+                      "key": "blockAreas",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "departure",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "imo",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "speed",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "speedInKts",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "vesselDraft",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locations",
+                      "description": "(Required) Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f2f1ab9-b917-4f7b-8987-b6e962351769",
+          "name": "Get a detailed sea route plan",
+          "request": {
+            "name": "Get a detailed sea route plan",
+            "description": {
+              "content": "Returns a sea route with a leg-by-leg voyage plan including timing based on the departure time and vessel speed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "route",
+                "v2",
+                "sea",
+                ":locations",
+                "plan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "departure",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "speedInKts",
+                  "value": "<number>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "locations",
+                  "description": "(Required) Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65861832-f5db-4d7d-a13e-382032264603",
+              "name": "A route plan with timed legs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "v2",
+                    "sea",
+                    ":locations",
+                    "plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departure",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "speedInKts",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locations",
+                      "description": "(Required) Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {\n        \"distance\": 755.1464283975029,\n        \"duration\": 7052.964885073076,\n        \"crossedAreas\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {\n        \"distance\": 6231.598024829446,\n        \"duration\": 5112.839781236308,\n        \"crossedAreas\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7147d789-d977-4595-bf44-a4a05af42ac1",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "route",
+                    "v2",
+                    "sea",
+                    ":locations",
+                    "plan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "departure",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "speedInKts",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "locations",
+                      "description": "(Required) Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.searoutes.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f7da8c0a-7f97-4580-93d4-f074c733e666",
+    "name": "Searoutes CO2 Emissions Ocean Routing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Maritime routing and carbon-emissions REST API. Compute sea routes and distances, geocode ports and places, calculate multimodal CO2e emissions, track vessels via AIS, look up carriers and services, and retrieve weather along routes. All endpoints are served from https://api.searoutes.com and authenticated with an x-api-key header. Endpoint paths are modeled from the published Searoutes developer documentation and llms.txt reference index; request/response schemas are summarized rather than exhaustive.\n\nContact Support:\n Name: Searoutes\n Email: contact@searoutes.com",
+      "type": "text/plain"
+    }
+  }
+}

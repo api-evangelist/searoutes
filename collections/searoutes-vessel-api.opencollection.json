@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searoutes CO2 Emissions Vessel API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vessel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the latest vessel position via IMO or MMSI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/position",
+            "params": [
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mmsi",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the latest vessel position via IMO or MMSI"
+        },
+        {
+          "info": {
+            "name": "Get a vessel ETA prediction from AIS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/eta",
+            "params": [
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toLocode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a vessel ETA prediction from AIS"
+        },
+        {
+          "info": {
+            "name": "List scheduled vessel arrivals at a port (beta)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/arrivals",
+            "params": [
+              {
+                "name": "locode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List scheduled vessel arrivals at a port (beta)"
+        },
+        {
+          "info": {
+            "name": "Search vessel information by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/name",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              }
+            ]
+          },
+          "docs": "Search vessel information by name"
+        },
+        {
+          "info": {
+            "name": "Access historical vessel position data between dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/timeseries",
+            "params": [
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Access historical vessel position data between dates"
+        },
+        {
+          "info": {
+            "name": "Obtain a processed vessel trajectory/route history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/vessel/v2/trace",
+            "params": [
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtain a processed vessel trajectory/route history"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

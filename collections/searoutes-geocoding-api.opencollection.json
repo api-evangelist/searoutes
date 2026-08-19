@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searoutes CO2 Emissions Geocoding API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find all types of locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/all",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              }
+            ]
+          },
+          "docs": "Search ports, airports, terminals, and postal codes in one call."
+        },
+        {
+          "info": {
+            "name": "Find ports by name or locode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/port",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              }
+            ]
+          },
+          "docs": "Find ports by name or locode"
+        },
+        {
+          "info": {
+            "name": "Search airports by name, locode, or IATA code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/airport",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              }
+            ]
+          },
+          "docs": "Search airports by name, locode, or IATA code"
+        },
+        {
+          "info": {
+            "name": "Locate routing areas by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/area",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              }
+            ]
+          },
+          "docs": "Locate routing areas by name"
+        },
+        {
+          "info": {
+            "name": "Retrieve coordinates for postal codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/zip",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search term (name, code, or locode)."
+              }
+            ]
+          },
+          "docs": "Retrieve coordinates for postal codes"
+        },
+        {
+          "info": {
+            "name": "Identify nearest locations from coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/closest",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Identify nearest locations from coordinates"
+        },
+        {
+          "info": {
+            "name": "Check if coordinates are at sea or find the closest sea point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/geocoding/v2/place",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check if coordinates are at sea or find the closest sea point"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

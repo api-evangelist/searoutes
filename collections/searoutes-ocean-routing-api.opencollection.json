@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Searoutes CO2 Emissions Ocean Routing API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ocean Routing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get sea route between locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/route/v2/sea/:locations",
+            "params": [
+              {
+                "name": "locations",
+                "value": "-1.27,50.80;8.83,53.88",
+                "type": "path",
+                "description": "Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+              },
+              {
+                "name": "continuousCoordinates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "allowIceAreas",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "avoidHRA",
+                "value": "",
+                "type": "query",
+                "description": "Avoid the High Risk Area."
+              },
+              {
+                "name": "avoidSeca",
+                "value": "",
+                "type": "query",
+                "description": "Avoid Sulphur Emission Control Areas."
+              },
+              {
+                "name": "blockAreas",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated area ids to block."
+              },
+              {
+                "name": "departure",
+                "value": "",
+                "type": "query",
+                "description": "Departure time as a Unix timestamp in milliseconds."
+              },
+              {
+                "name": "imo",
+                "value": "",
+                "type": "query",
+                "description": "Vessel IMO number."
+              },
+              {
+                "name": "speed",
+                "value": "",
+                "type": "query",
+                "description": "Vessel speed in km/h."
+              },
+              {
+                "name": "speedInKts",
+                "value": "",
+                "type": "query",
+                "description": "Vessel speed in knots."
+              },
+              {
+                "name": "vesselDraft",
+                "value": "",
+                "type": "query",
+                "description": "Vessel draft in meters."
+              }
+            ]
+          },
+          "docs": "Returns the sea route between a source and target location (and up to 20 waypoints) as coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons, along with route distance (meters), duration (milliseconds), and the crossed areas."
+        },
+        {
+          "info": {
+            "name": "Get a detailed sea route plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.searoutes.com/route/v2/sea/:locations/plan",
+            "params": [
+              {
+                "name": "locations",
+                "value": "-1.27,50.80;8.83,53.88",
+                "type": "path",
+                "description": "Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions."
+              },
+              {
+                "name": "departure",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "speedInKts",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a sea route with a leg-by-leg voyage plan including timing based on the departure time and vessel speed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
