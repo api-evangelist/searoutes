@@ -11,6 +11,18 @@ description: Searoutes is a maritime routing and carbon-emissions API platform f
   ETAs, traces, arrivals), look up carriers and services, and return historical,
   real-time, and forecasted weather along routes. All APIs are served from
   https://api.searoutes.com and authenticated with an x-api-key header.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
