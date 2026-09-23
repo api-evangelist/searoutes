@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Searoutes CO2 Emissions API
-  description: Maritime routing and carbon-emissions REST API. Compute sea routes and distances, geocode ports and places, calculate multimodal CO2e emissions, track vessels via AIS, look up carriers and services, and retrieve weather along routes. All endpoints are served from https://api.searoutes.com and authenticated with an x-api-key header. Endpoint paths are modeled from the published Searoutes developer documentation and llms.txt reference index; request/response schemas are summarized rather than exhaustive.
+  description: Maritime routing and carbon-emissions REST API.
   termsOfService: https://searoutes.com/terms/
   contact:
     name: Searoutes
@@ -193,19 +193,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Co2Response:
-      description: CO2e emission results in grams/kilograms with methodology metadata.
-      content:
-        application/json:
-          schema:
-            type: object
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Locations:
       name: locations
@@ -215,6 +202,19 @@ components:
       schema:
         type: string
       example: -1.27,50.80;8.83,53.88
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Co2Response:
+      description: CO2e emission results in grams/kilograms with methodology metadata.
+      content:
+        application/json:
+          schema:
+            type: object
   schemas:
     Error:
       type: object
