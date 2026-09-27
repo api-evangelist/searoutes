@@ -127,6 +127,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    GeocodingResponse:
+      description: A GeoJSON FeatureCollection of matching locations.
+      content:
+        application/json:
+          schema:
+            type: object
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -135,19 +148,6 @@ components:
           type: string
         message:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    GeocodingResponse:
-      description: A GeoJSON FeatureCollection of matching locations.
-      content:
-        application/json:
-          schema:
-            type: object
   parameters:
     Query:
       name: query
