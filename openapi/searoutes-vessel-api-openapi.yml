@@ -128,6 +128,22 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    Query:
+      name: query
+      in: query
+      required: true
+      description: Free-text search term (name, code, or locode).
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
   responses:
     VesselResponse:
       description: Vessel AIS data (position, ETA, trace, or time series).
@@ -141,22 +157,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-  parameters:
-    Query:
-      name: query
-      in: query
-      required: true
-      description: Free-text search term (name, code, or locode).
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

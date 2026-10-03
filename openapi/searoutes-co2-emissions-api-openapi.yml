@@ -201,6 +201,15 @@ components:
           type: string
         message:
           type: string
+  parameters:
+    Locations:
+      name: locations
+      in: path
+      required: true
+      description: Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions.
+      schema:
+        type: string
+      example: -1.27,50.80;8.83,53.88
   responses:
     Co2Response:
       description: CO2e emission results in grams/kilograms with methodology metadata.
@@ -214,15 +223,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    Locations:
-      name: locations
-      in: path
-      required: true
-      description: Coordinate pairs (longitude,latitude) or UN/LOCODEs separated by semicolons. Up to 20 positions.
-      schema:
-        type: string
-      example: -1.27,50.80;8.83,53.88
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

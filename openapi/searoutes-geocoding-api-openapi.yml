@@ -127,27 +127,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    GeocodingResponse:
-      description: A GeoJSON FeatureCollection of matching locations.
-      content:
-        application/json:
-          schema:
-            type: object
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
   parameters:
     Query:
       name: query
@@ -156,6 +135,27 @@ components:
       description: Free-text search term (name, code, or locode).
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    GeocodingResponse:
+      description: A GeoJSON FeatureCollection of matching locations.
+      content:
+        application/json:
+          schema:
+            type: object
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
