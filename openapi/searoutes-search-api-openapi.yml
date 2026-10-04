@@ -81,14 +81,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    Query:
-      name: query
-      in: query
-      required: true
-      description: Free-text search term (name, code, or locode).
-      schema:
-        type: string
+  responses:
+    SearchResponse:
+      description: Carrier or service search results.
+      content:
+        application/json:
+          schema:
+            type: object
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -97,19 +102,14 @@ components:
           type: string
         message:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    SearchResponse:
-      description: Carrier or service search results.
-      content:
-        application/json:
-          schema:
-            type: object
+  parameters:
+    Query:
+      name: query
+      in: query
+      required: true
+      description: Free-text search term (name, code, or locode).
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
