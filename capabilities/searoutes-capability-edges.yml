@@ -1,0 +1,26 @@
+slug: searoutes
+provider: Searoutes
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: CO2 Emissions
+  spec_file: searoutes-co2-emissions-api-openapi.yml
+  capability_id: BC-740.20
+  capability_id_l1: BC-740
+  capability_name: Climate & Carbon Management
+  confidence: 0.8
+  evidence: GET /co2/v2/shipment getShipmentCo2 "Get CO2e emissions for a multimodal shipment"; GET /co2/v2/road
+    "Calculate road transport emissions"
+  reason: Operations compute CO2e emissions across sea, road, rail, air and inland waterway transport
+    — carbon footprint calculation and disclosure data, i.e. Climate & Carbon Management. It is a calculation
+    engine rather than a programme-management tool, hence 0.8 not 0.95.

@@ -161,6 +161,9 @@ apis:
   - type: OpenCollection
     url: collections/searoutes.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/searoutes-capability-edges.yml
+  name: Searoutes Business Capability Map
 - type: AgenticAccess
   url: agentic-access/searoutes-agentic-access.yml
 - type: DomainSecurity
