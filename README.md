@@ -1,4 +1,4 @@
-# Searoutes (searoutes)
+# Searoutes
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,172 +64,128 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Searoutes is a maritime routing and carbon-emissions API platform for logistics, freight forwarding, and supply-chain teams. Its REST APIs compute point-to-point, port-to-point, and port-to-port sea routes with distances and durations (including SECA, High Risk Area, and ice-area avoidance), geocode ports, airports, and places, calculate multimodal CO2e emissions (sea, road, rail, air, inland waterway) using a GLEC-accredited methodology, track vessels via AIS (positions, ETAs, traces, arrivals), look up carriers and services, and return historical, real-time, and forecasted weather along routes. All APIs are served from `https://api.searoutes.com` and authenticated with an `x-api-key` header.
+Searoutes is a maritime routing and carbon-emissions API platform for logistics, freight forwarding, and supply-chain teams. Its REST APIs compute point-to-point, port-to-point, and port-to-port sea routes with distances and durations (including SECA, HRA, and ice-area avoidance), geocode ports, airports, and places, calculate multimodal CO2e emissions (sea, road, rail, air, inland waterway) using a GLEC-accredited methodology, track vessels via AIS (positions, ETAs, traces, arrivals), look up carriers and services, and return historical, real-time, and forecasted weather along routes. All APIs are served from https://api.searoutes.com and authenticated with an x-api-key header.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/searoutes/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/searoutes/refs/heads/main/apis.yml)
+**Areas:** Maritime · Sea Routing · Ocean Freight · CO2 Emissions · Carbon Accounting · Vessel Tracking · AIS · Geocoding · Logistics · Supply Chain
 
-## Tags
+## Searoutes on APIs.io
 
-- Maritime
-- Sea Routing
-- Ocean Freight
-- CO2 Emissions
-- Carbon Accounting
-- Vessel Tracking
-- AIS
-- Geocoding
-- Logistics
-- Supply Chain
+Everything profiled for Searoutes is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/searoutes/](https://apis.io/providers/searoutes/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+- [Searoutes CO2 Emissions API](https://apis.io/apis/searoutes/searoutes-co2-emissions-api/) — Multimodal CO2e emission calculations (sea, road, rail, air, inland water).
+- [Searoutes Geocoding API](https://apis.io/apis/searoutes/searoutes-geocoding-api/) — Ports, airports, places, areas, postal codes, and nearest points.
+- [Searoutes Ocean Routing API](https://apis.io/apis/searoutes/searoutes-ocean-routing-api/) — Sea routes, distances, durations, and voyage plans.
+- [Searoutes Search API](https://apis.io/apis/searoutes/searoutes-search-api/) — Carrier and liner-service lookup.
+- [Searoutes Vessel API](https://apis.io/apis/searoutes/searoutes-vessel-api/) — AIS vessel positions, ETAs, arrivals, traces, and time series.
+- [Searoutes Weather API](https://apis.io/apis/searoutes/searoutes-weather-api/) — Historical, real-time, and forecasted weather.
 
-## Authentication
+### Published properties
 
-All requests go to base URL `https://api.searoutes.com` and must include an `x-api-key` header. A free trial key (valid 7 days, up to 100 calls) is issued on signup; paid access is sold as annual per-product subscription bundles.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Searoutes Ocean Routing API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Compute point-to-point, port-to-point, and port-to-port sea routes between up to twenty coordinates or UN/LOCODEs, returning route geometry, distance in meters, duration in milliseconds, and crossed areas. Supports SECA, High Risk Area, and ice-area avoidance, area blocking, vessel draft and speed inputs, and departure-time-aware planning.
+- [Searoutes Agentic Access](https://apis.io/agentic-access/searoutes/searoutes-agentic-access/)
 
-- **Human URL:** [https://developer.searoutes.com/reference/getsearoute](https://developer.searoutes.com/reference/getsearoute)
-- **Base URL:** `https://api.searoutes.com`
+#### Collections (7)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Sea Routing
-- Ocean Freight
-- Distances
-- Voyage Planning
+- [Searoutes API](https://apis.io/collections/searoutes/open-searoutes/)
+- [Searoutes CO2 Emissions API](https://apis.io/collections/searoutes/open-searoutes-co2-emissions-api/)
+- [Searoutes CO2 Emissions Geocoding API](https://apis.io/collections/searoutes/open-searoutes-geocoding-api/)
+- [Searoutes CO2 Emissions Ocean Routing API](https://apis.io/collections/searoutes/open-searoutes-ocean-routing-api/)
+- [Searoutes CO2 Emissions Search API](https://apis.io/collections/searoutes/open-searoutes-search-api/)
+- [Searoutes CO2 Emissions Vessel API](https://apis.io/collections/searoutes/open-searoutes-vessel-api/)
+- [Searoutes CO2 Emissions Weather API](https://apis.io/collections/searoutes/open-searoutes-weather-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://developer.searoutes.com/reference/introduction)
-- [API Reference](https://developer.searoutes.com/reference/getsearoute)
-- [OpenAPI](openapi/searoutes-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/searoutes.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/searoutes.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Searoutes Geocoding API
+- [Searoutes Authentication](https://apis.io/security/searoutes/searoutes-authentication/)
+- [Searoutes Domain Security](https://apis.io/security/searoutes/searoutes-domain-security/)
 
-Resolve ports, airports, terminals, routing areas, postal codes, and arbitrary places by name, UN/LOCODE, or IATA code, find the nearest location or closest sea point to a coordinate, and search all location types in a single call.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://developer.searoutes.com/reference/introduction](https://developer.searoutes.com/reference/introduction)
-- **Base URL:** `https://api.searoutes.com`
+Published plans, tiers and prices.
 
-#### Tags
+- [Searoutes Plans Pricing](https://apis.io/plans/searoutes/searoutes-plans-pricing/)
 
-- Geocoding
-- Ports
-- Airports
-- Locations
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://developer.searoutes.com/reference/introduction)
-- [OpenAPI](openapi/searoutes-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/searoutes.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/searoutes.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Searoutes Rate Limits](https://apis.io/rate-limits/searoutes/searoutes-rate-limits/)
 
-### Searoutes CO2 Emissions API
+#### FinOps (1)
 
-Calculate CO2e emissions for multimodal shipments and individual legs across sea (vessel and trade-lane), road, rail, air, and inland-waterway transport using an ISO 14083 / GLEC-accredited methodology, plus milk-run, carrier-plan, proforma, and ocean-schedule execution emission breakdowns.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://developer.searoutes.com/reference/introduction](https://developer.searoutes.com/reference/introduction)
-- **Base URL:** `https://api.searoutes.com`
+- [Searoutes Finops](https://apis.io/finops/searoutes/searoutes-finops/)
 
-#### Tags
+## Where to find this API
 
-- CO2 Emissions
-- Carbon Accounting
-- GLEC
-- Multimodal
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://developer.searoutes.com/reference/introduction)
-- [OpenAPI](openapi/searoutes-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/searoutes.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/searoutes.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Searoutes Vessel Tracking API
-
-Retrieve the latest position of a vessel by IMO or MMSI, look up vessels by name, predict ETAs from AIS, list scheduled port arrivals, and access historical position time series and processed trajectory traces.
-
-- **Human URL:** [https://developer.searoutes.com/reference/introduction](https://developer.searoutes.com/reference/introduction)
-- **Base URL:** `https://api.searoutes.com`
-
-#### Tags
-
-- Vessel Tracking
-- AIS
-- ETA
-- Positions
-
-#### Properties
-
-- [Documentation](https://developer.searoutes.com/reference/introduction)
-- [OpenAPI](openapi/searoutes-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/searoutes.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/searoutes.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Searoutes Search & Carriers API
-
-Find ocean carriers by name or SCAC code, retrieve carrier details, and search liner services by name with optional carrier filtering to return the vessels and ports on each service.
-
-- **Human URL:** [https://developer.searoutes.com/reference/introduction](https://developer.searoutes.com/reference/introduction)
-- **Base URL:** `https://api.searoutes.com`
-
-#### Tags
-
-- Carriers
-- Services
-- SCAC
-- Search
-
-#### Properties
-
-- [Documentation](https://developer.searoutes.com/reference/introduction)
-- [OpenAPI](openapi/searoutes-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/searoutes.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/searoutes.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Searoutes Weather API
-
-Query historical (2013-present), real-time, and forecasted weather at a location, retrieve bulk forecasts up to fourteen days out, and obtain weather conditions along a specific route track.
-
-- **Human URL:** [https://developer.searoutes.com/reference/introduction](https://developer.searoutes.com/reference/introduction)
-- **Base URL:** `https://api.searoutes.com`
-
-#### Tags
-
-- Weather
-- Forecast
-- Historical
-- Routes
-
-#### Properties
-
-- [Documentation](https://developer.searoutes.com/reference/introduction)
-- [OpenAPI](openapi/searoutes-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/searoutes.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/searoutes.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/searoutes)
-- [LinkedIn](https://www.linkedin.com/company/searoutes)
 - [Website](https://searoutes.com)
 - [Documentation](https://developer.searoutes.com/reference/introduction)
-- [Plans](plans/searoutes-plans-pricing.yml)
-- [Rate Limits](rate-limits/searoutes-rate-limits.yml)
-- [Fin Ops](finops/searoutes-finops.yml)
+- [Blog](https://searoutes.com/blog/feed/)
+- [GitHub](https://github.com/searoutes)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 24.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 44.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/searoutes/](https://apis.io/providers/searoutes/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Searoutes: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/searoutes/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
